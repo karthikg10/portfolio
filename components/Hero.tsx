@@ -415,7 +415,7 @@ export default function Hero() {
           >
             <div className="backdrop-blur-xl bg-white/80 dark:bg-black/60 border border-white/20 dark:border-white/10 rounded-xl px-6 py-3 shadow-lg">
               <p className="text-sm md:text-base text-gray-800 dark:text-white/90 text-center font-medium italic">
-                "Programming isn't about what you know; it's about what you can figure out."
+                &quot;Programming isn&apos;t about what you know; it&apos;s about what you can figure out.&quot;
               </p>
               <p className="text-xs text-gray-600 dark:text-white/70 text-center mt-1">
                 – Chris Pine
