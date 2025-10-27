@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import { FaBriefcase, FaUser, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
+import Image from 'next/image'
 
 interface AboutProps {
   handleOpenExperience?: () => void
@@ -75,9 +76,11 @@ export default function About({ handleOpenExperience }: AboutProps) {
                  <div 
                    className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary-500 shadow-[0_0_30px_rgba(59,130,246,0.35)]"
                  >
-            <img
+            <Image
               src="/images/profile.jpg"
               alt="Karthik Ganesh"
+              width={192}
+              height={192}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent" />
