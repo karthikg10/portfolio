@@ -41,5 +41,8 @@ next-env.d.ts
 *.swp
 *.swo
 
+# Large video files
+public/background-video.mp4
+
 
 
