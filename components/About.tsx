@@ -59,23 +59,9 @@ export default function About({ handleOpenExperience }: AboutProps) {
           className="mb-6 relative"
           whileHover={{ scale: 1.05, rotateY: 5 }}
         >
-          {/* Animated border with pulsing effect */}
-          <motion.div 
-            className="absolute -inset-4 rounded-full bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 opacity-75 blur-sm"
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-                 <div 
-                   className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary-500 shadow-[0_0_30px_rgba(59,130,246,0.35)]"
-                 >
+          <div 
+            className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary-500 shadow-lg"
+          >
             <Image
               src="/images/profile.jpg"
               alt="Karthik Ganesh"
@@ -84,29 +70,6 @@ export default function About({ handleOpenExperience }: AboutProps) {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-            
-            {/* Floating particles around image */}
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={`particle-${i}`}
-                className="absolute w-2 h-2 bg-white/60 rounded-full"
-                style={{
-                  left: `${20 + i * 10}%`,
-                  top: `${10 + (i % 3) * 20}%`,
-                }}
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0.3, 1, 0.3],
-                  scale: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 2 + i * 0.3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.2
-                }}
-              />
-            ))}
           </div>
         </motion.div>
         

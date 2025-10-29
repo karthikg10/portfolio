@@ -28,6 +28,12 @@ const dockItems = [
     window: 'projects' as WindowType,
   },
   {
+    name: 'Experience',
+    icon: FaBriefcase,
+    color: 'from-indigo-500 via-indigo-600 to-purple-500',
+    window: 'experience' as WindowType,
+  },
+  {
     name: 'Resume',
     icon: FaFile,
     href: 'https://drive.google.com/file/d/1Yy5NzpvwWdiOdpUxhEHKIkeRIthnf1TK/view?usp=share_link',
