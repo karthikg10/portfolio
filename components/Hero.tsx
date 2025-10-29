@@ -103,7 +103,7 @@ function DockIcon({ item, index, mouseX, onClick, active, compact = false }: any
       ref={ref}
       onClick={onClick}
       style={compact
-        ? { width: 48, y: 0, rotateZ: 0 }
+        ? { width: 40, y: 0, rotateZ: 0 }
         : { width: active ? (width as any) : 52, y: active ? (y as any) : 0, rotateZ: active ? (rotateZ as any) : 0 }
       }
       whileTap={{ scale: 0.85 }}
@@ -123,7 +123,7 @@ function DockIcon({ item, index, mouseX, onClick, active, compact = false }: any
       </div>
 
       {/* Icon */}
-      <Icon className={`relative z-10 text-white ${compact ? 'text-xl' : 'text-xl'} drop-shadow-lg`} />
+      <Icon className={`relative z-10 text-white ${compact ? 'text-base' : 'text-xl'} drop-shadow-lg`} />
 
       {/* Reflection */}
       <div className="absolute -bottom-12 left-0 right-0 h-12 bg-gradient-to-b from-white/5 to-transparent rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -779,8 +779,8 @@ export default function Hero() {
       </AnimatePresence>
 
              {/* Ultra Creative Dock */}
-             <div className="fixed z-40 left-1/2 -translate-x-1/2 sm:scale-95 md:scale-100"
-                 style={{ bottom: 'calc(16px + env(safe-area-inset-bottom))', transform: isCompactDock ? 'translateX(-50%) scaleX(1.38)' : undefined }}>
+             <div className={`fixed z-40 left-1/2 -translate-x-1/2 sm:scale-95 md:scale-100 ${isCompactDock ? 'px-6' : ''}`}
+                 style={{ bottom: 'calc(16px + env(safe-area-inset-bottom))' }}>
         {/* Dock Container with Amazing Effects */}
         <motion.div
           ref={dockRef}
@@ -816,7 +816,7 @@ export default function Hero() {
                    {/* Removed moving rail/central label; each icon shows its own tooltip */}
                    
                    {/* Dock Items Container */}
-                   <div className={`${isCompactDock ? 'grid grid-cols-5 gap-2 px-6 py-2' : 'flex items-end gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-3'}`}>
+                   <div className={`${isCompactDock ? 'grid grid-cols-5 gap-2 px-2 py-2' : 'flex items-end gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-3'}`}>
               {dockItems.map((item, index) => (
                 <DockIcon
                   key={item.name}
