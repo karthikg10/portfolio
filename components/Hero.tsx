@@ -770,7 +770,7 @@ export default function Hero() {
                )}
                {/* Footer inside a small window to show credits */}
                {openWindow === null && (
-                <div className="fixed bottom-3 right-3 z-30 pointer-events-none">
+               <div className="fixed bottom-3 right-3 z-30 pointer-events-none hidden sm:block">
                   <div className="pointer-events-auto text-[11px] text-gray-700 dark:text-white/70 bg-white/80 dark:bg-black/40 backdrop-blur-xl rounded-lg border border-gray-200 dark:border-white/10 px-3 py-1.5 shadow-md">
                     <span className="text-gray-600 dark:text-white/60">Designed by Karthik Ganesh</span>
                   </div>
@@ -779,8 +779,8 @@ export default function Hero() {
       </AnimatePresence>
 
              {/* Ultra Creative Dock */}
-             <div className="fixed z-40 left-1/2 transform -translate-x-1/2 scale-100 sm:scale-95 md:scale-100"
-                  style={{ bottom: 'calc(16px + env(safe-area-inset-bottom))' }}>
+             <div className="fixed z-40 left-1/2 -translate-x-1/2 sm:scale-95 md:scale-100"
+                 style={{ bottom: 'calc(16px + env(safe-area-inset-bottom))', transform: isCompactDock ? 'translateX(-50%) scaleX(1.12)' : undefined }}>
         {/* Dock Container with Amazing Effects */}
         <motion.div
           ref={dockRef}
