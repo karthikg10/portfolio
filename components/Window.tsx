@@ -43,24 +43,24 @@ export default function Window({ title, onClose, children, initialPosition = { x
             {/* Traffic Lights */}
             <button
               onClick={onClose}
-              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center group"
+              className="w-[8px] h-[8px] sm:w-3 sm:h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center group"
               aria-label="Close"
             >
-              <FaTimes className="text-white text-[4px] sm:text-[6px] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <FaTimes className="text-white text-[3px] sm:text-[6px] opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
             <button
               onClick={onClose}
-              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors flex items-center justify-center group"
+              className="w-[8px] h-[8px] sm:w-3 sm:h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors flex items-center justify-center group"
               aria-label="Close"
             >
-              <FaMinus className="text-yellow-900 text-[4px] sm:text-[6px] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <FaMinus className="text-yellow-900 text-[3px] sm:text-[6px] opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
             <button
               onClick={() => setIsMaximized(!isMaximized)}
-              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors flex items-center justify-center group"
+              className="w-[8px] h-[8px] sm:w-3 sm:h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors flex items-center justify-center group"
               aria-label="Maximize"
             >
-              <FaWindowMaximize className="text-white text-[3px] sm:text-[5px] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <FaWindowMaximize className="text-white text-[2.5px] sm:text-[5px] opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
           </div>
           <div className="text-gray-800 dark:text-white text-xs sm:text-sm font-medium absolute left-1/2 transform -translate-x-1/2">

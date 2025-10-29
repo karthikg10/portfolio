@@ -780,7 +780,7 @@ export default function Hero() {
 
              {/* Ultra Creative Dock */}
              <div className="fixed z-40 left-1/2 -translate-x-1/2 sm:scale-95 md:scale-100"
-                 style={{ bottom: 'calc(16px + env(safe-area-inset-bottom))', transform: isCompactDock ? 'translateX(-50%) scaleX(1.12)' : undefined }}>
+                 style={{ bottom: 'calc(16px + env(safe-area-inset-bottom))', transform: isCompactDock ? 'translateX(-50%) scaleX(1.25)' : undefined }}>
         {/* Dock Container with Amazing Effects */}
         <motion.div
           ref={dockRef}
@@ -816,7 +816,7 @@ export default function Hero() {
                    {/* Removed moving rail/central label; each icon shows its own tooltip */}
                    
                    {/* Dock Items Container */}
-                   <div className={`${isCompactDock ? 'grid grid-cols-5 gap-2 px-2 py-2' : 'flex items-end gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-3'}`}>
+                   <div className={`${isCompactDock ? 'grid grid-cols-5 gap-2 px-4 py-2' : 'flex items-end gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-3'}`}>
               {dockItems.map((item, index) => (
                 <DockIcon
                   key={item.name}
