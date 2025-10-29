@@ -80,7 +80,7 @@ const dockItems = [
   },
 ]
 
-function DockIcon({ item, index, mouseX, onClick, active }: any) {
+function DockIcon({ item, index, mouseX, onClick, active, compact = false }: any) {
   const ref = useRef<HTMLButtonElement>(null)
   const Icon = item.icon
   const [hovered, setHovered] = useState(false)
@@ -102,11 +102,14 @@ function DockIcon({ item, index, mouseX, onClick, active }: any) {
     <motion.button
       ref={ref}
       onClick={onClick}
-      style={{ width: active ? (width as any) : 52, y: active ? (y as any) : 0, rotateZ: active ? (rotateZ as any) : 0 }}
+      style={compact
+        ? { width: 40, y: 0, rotateZ: 0 }
+        : { width: active ? (width as any) : 52, y: active ? (y as any) : 0, rotateZ: active ? (rotateZ as any) : 0 }
+      }
       whileTap={{ scale: 0.85 }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className="relative group aspect-square rounded-2xl bg-gradient-to-br flex items-center justify-center shadow-lg transition-all duration-300"
+      className={`relative group aspect-square ${compact ? 'rounded-xl' : 'rounded-2xl'} bg-gradient-to-br flex items-center justify-center shadow-lg transition-all duration-300`}
     >
       {/* Gradient Background with Animation */}
       <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${item.color} opacity-90 group-hover:opacity-100 transition-opacity`} />
@@ -120,12 +123,13 @@ function DockIcon({ item, index, mouseX, onClick, active }: any) {
       </div>
 
       {/* Icon */}
-      <Icon className="relative z-10 text-white text-xl drop-shadow-lg" />
+      <Icon className={`relative z-10 text-white ${compact ? 'text-base' : 'text-xl'} drop-shadow-lg`} />
 
       {/* Reflection */}
       <div className="absolute -bottom-12 left-0 right-0 h-12 bg-gradient-to-b from-white/5 to-transparent rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
 
       {/* Tooltip above icon */}
+      {!compact && (
       <motion.div
         initial={{ opacity: 0, y: 6, scale: 0.85 }}
         animate={{ opacity: hovered ? 1 : 0, y: hovered ? -6 : 6, scale: hovered ? 1 : 0.85 }}
@@ -135,9 +139,9 @@ function DockIcon({ item, index, mouseX, onClick, active }: any) {
         <div className="px-3 py-1.5 rounded-full text-xs font-semibold text-white bg-black/90 backdrop-blur-md border border-white/20 shadow-xl whitespace-nowrap">
           {item.name}
         </div>
-      </motion.div>
+      </motion.div>)}
       {/* Per-icon hover indicator */}
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3 h-1 rounded-full bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity" />
+      {!compact && <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3 h-1 rounded-full bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity" />}
     </motion.button>
   )
 }
@@ -215,6 +219,7 @@ export default function Hero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [isDockHover, setIsDockHover] = useState(false)
+  const [isCompactDock, setIsCompactDock] = useState(false)
   const [isSwitchingWindow, setIsSwitchingWindow] = useState(false)
   const [rippleKey, setRippleKey] = useState(0)
   const mouseX = useMotionValue(Infinity)
@@ -244,6 +249,24 @@ export default function Hero() {
       localStorage.setItem('theme', 'light')
     }
   }, [isDarkMode])
+
+  // Compact dock on small screens
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(max-width: 640px)')
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
+      // e.matches available on both types
+      // @ts-ignore
+      setIsCompactDock(!!e.matches)
+    }
+    handler(mq)
+    // @ts-ignore
+    mq.addEventListener ? mq.addEventListener('change', handler) : mq.addListener(handler)
+    return () => {
+      // @ts-ignore
+      mq.removeEventListener ? mq.removeEventListener('change', handler) : mq.removeListener(handler)
+    }
+  }, [])
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -312,7 +335,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex items-end justify-center overflow-hidden"
+      className="relative min-h-screen flex items-end justify-center overflow-hidden pb-[calc(88px+env(safe-area-inset-bottom))] sm:pb-0"
       onMouseMove={(e) => {
         cursorX.set(e.clientX)
         cursorY.set(e.clientY)
@@ -453,7 +476,7 @@ export default function Hero() {
 
       {/* Enhanced Cursor-follow effects */}
       <motion.div
-        className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 z-10 w-56 h-56 rounded-full"
+        className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 z-10 w-56 h-56 rounded-full hidden md:block"
         style={{
           left: cursorX,
           top: cursorY,
@@ -465,7 +488,7 @@ export default function Hero() {
       
       {/* Secondary cursor trail */}
       <motion.div
-        className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 z-9 w-32 h-32 rounded-full"
+        className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 z-9 w-32 h-32 rounded-full hidden md:block"
         style={{
           left: cursorX,
           top: cursorY,
@@ -486,7 +509,7 @@ export default function Hero() {
       
       {/* Floating geometric shapes */}
       {typeof window !== 'undefined' && (
-        <div className="fixed inset-0 z-8 pointer-events-none">
+        <div className="hidden md:block fixed inset-0 z-8 pointer-events-none">
           {[...Array(5)].map((_, i) => (
             <motion.div
               key={`shape-${i}`}
@@ -518,7 +541,7 @@ export default function Hero() {
 
       {/* Enhanced Floating Particles with Different Types */}
       {typeof window !== 'undefined' && (
-        <div className="fixed inset-0 z-5 pointer-events-none">
+        <div className="hidden md:block fixed inset-0 z-5 pointer-events-none">
           {/* Small particles */}
           {[...Array(30)].map((_, i) => (
             <motion.div
@@ -756,7 +779,8 @@ export default function Hero() {
       </AnimatePresence>
 
              {/* Ultra Creative Dock */}
-             <div className="fixed bottom-6 z-40 left-1/2 transform -translate-x-1/2">
+             <div className="fixed z-40 left-1/2 transform -translate-x-1/2 scale-90 sm:scale-95 md:scale-100"
+                  style={{ bottom: 'calc(16px + env(safe-area-inset-bottom))' }}>
         {/* Dock Container with Amazing Effects */}
         <motion.div
           ref={dockRef}
@@ -786,13 +810,13 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 blur-3xl" />
           
                  {/* Glass Container */}
-                 <div className="relative backdrop-blur-2xl bg-white/80 dark:bg-white/10 rounded-3xl border border-gray-300 dark:border-white/20 shadow-2xl">
+                   <div className="relative backdrop-blur-2xl bg-white/80 dark:bg-white/10 rounded-3xl border border-gray-300 dark:border-white/20 shadow-2xl">
                    {/* Top Border Shine */}
                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                    {/* Removed moving rail/central label; each icon shows its own tooltip */}
                    
                    {/* Dock Items Container */}
-                   <div className="flex items-end gap-2 px-4 py-3">
+                   <div className={`${isCompactDock ? 'grid grid-cols-5 gap-2 px-2 py-2' : 'flex items-end gap-1.5 sm:gap-2 px-3 py-2 sm:px-4 sm:py-3'}`}>
               {dockItems.map((item, index) => (
                 <DockIcon
                   key={item.name}
@@ -801,6 +825,7 @@ export default function Hero() {
                   mouseX={mouseX}
                   onClick={() => handleDockItemClick(item)}
                   active={isDockHover}
+                  compact={isCompactDock}
                 />
               ))}
             </div>

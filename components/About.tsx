@@ -60,7 +60,7 @@ export default function About({ handleOpenExperience }: AboutProps) {
           whileHover={{ scale: 1.05, rotateY: 5 }}
         >
           <div 
-            className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary-500 shadow-lg"
+            className="relative w-36 h-36 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 border-primary-500 shadow-lg"
           >
             <Image
               src="/images/profile_picture.jpeg"
@@ -121,7 +121,7 @@ export default function About({ handleOpenExperience }: AboutProps) {
       </motion.div>
 
       {/* Contact Info Cards */}
-      <div className="grid grid-cols-2 gap-4 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
         {contactInfo.map((item, index) => {
           const Icon = item.icon
           return (

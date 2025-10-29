@@ -29,8 +29,8 @@ export default function Window({ title, onClose, children, initialPosition = { x
       style={{ 
         top: '5%',
         left: '50%',
-        marginLeft: isMaximized ? '-45vw' : '-425px',
-        width: isMaximized ? '90vw' : '850px',
+        marginLeft: isMaximized ? '-45vw' : 'calc(-0.5 * min(90vw, 850px))',
+        width: isMaximized ? '90vw' : 'min(90vw, 850px)',
         maxWidth: '90vw',
         maxHeight: 'calc(100vh - 200px)'
       }}
@@ -69,7 +69,7 @@ export default function Window({ title, onClose, children, initialPosition = { x
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden p-6 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
           {children}
         </div>
       </div>
