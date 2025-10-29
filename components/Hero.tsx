@@ -810,7 +810,8 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 blur-3xl" />
           
                  {/* Glass Container */}
-                   <div className="relative backdrop-blur-2xl bg-white/80 dark:bg-white/10 rounded-3xl border border-gray-300 dark:border-white/20 shadow-2xl">
+                  <div className="relative backdrop-blur-2xl bg-white/80 dark:bg-white/10 rounded-3xl border border-gray-300 dark:border-white/20 shadow-2xl"
+                        style={{ width: isCompactDock ? 'min(64vw, 410px)' : undefined }}>
                    {/* Top Border Shine */}
                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                    {/* Removed moving rail/central label; each icon shows its own tooltip */}
