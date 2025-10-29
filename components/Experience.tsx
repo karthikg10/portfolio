@@ -99,7 +99,7 @@ export default function Experience() {
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate="visible"
         >
           {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center mb-16">
