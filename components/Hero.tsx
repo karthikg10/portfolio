@@ -103,7 +103,7 @@ function DockIcon({ item, index, mouseX, onClick, active, compact = false }: any
       ref={ref}
       onClick={onClick}
       style={compact
-        ? { width: 40, y: 0, rotateZ: 0 }
+        ? { width: 44, y: 0, rotateZ: 0 }
         : { width: active ? (width as any) : 52, y: active ? (y as any) : 0, rotateZ: active ? (rotateZ as any) : 0 }
       }
       whileTap={{ scale: 0.85 }}
@@ -123,7 +123,7 @@ function DockIcon({ item, index, mouseX, onClick, active, compact = false }: any
       </div>
 
       {/* Icon */}
-      <Icon className={`relative z-10 text-white ${compact ? 'text-base' : 'text-xl'} drop-shadow-lg`} />
+      <Icon className={`relative z-10 text-white ${compact ? 'text-lg' : 'text-xl'} drop-shadow-lg`} />
 
       {/* Reflection */}
       <div className="absolute -bottom-12 left-0 right-0 h-12 bg-gradient-to-b from-white/5 to-transparent rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -779,7 +779,7 @@ export default function Hero() {
       </AnimatePresence>
 
              {/* Ultra Creative Dock */}
-             <div className="fixed z-40 left-1/2 transform -translate-x-1/2 scale-90 sm:scale-95 md:scale-100"
+             <div className="fixed z-40 left-1/2 transform -translate-x-1/2 scale-95 sm:scale-95 md:scale-100"
                   style={{ bottom: 'calc(16px + env(safe-area-inset-bottom))' }}>
         {/* Dock Container with Amazing Effects */}
         <motion.div
