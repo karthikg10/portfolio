@@ -63,7 +63,7 @@ export default function About({ handleOpenExperience }: AboutProps) {
             className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary-500 shadow-lg"
           >
             <Image
-              src="/images/profile.jpg"
+              src="/images/profile_picture.jpeg"
               alt="Karthik Ganesh"
               width={192}
               height={192}
