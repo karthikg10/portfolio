@@ -146,17 +146,7 @@ export default function About({ handleOpenExperience }: AboutProps) {
         })}
       </div>
 
-      {/* Interest Tags */}
-      <div className="mt-8 flex flex-wrap gap-3 justify-center">
-        {['Distributed Systems', 'Enterprise Software', 'Parallel Computing', 'Cloud Computing', 'Machine Learning', 'AI'].map((interest) => (
-          <span
-            key={interest}
-            className="px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full text-sm text-blue-300 hover:bg-blue-500/30 transition-colors"
-          >
-            {interest}
-          </span>
-        ))}
-      </div>
+      
     </div>
   )
 }
