@@ -57,7 +57,7 @@ const projects = [
     title: 'NLP Projects',
     description: 'Collection of Natural Language Processing projects including text analysis, sentiment analysis, and language models',
     image: '/images/LLM.jpg',
-    link: 'https://github.com/karthikg10/NLP-projects',
+    link: 'https://github.com/karthikg10/nlp-learning-kit',
     tech: ['NLP', 'Transformers', 'Python', 'ML'],
   },
   {
@@ -78,7 +78,7 @@ const projects = [
     title: 'Advanced Data Mining Project',
     description: 'Advanced data mining algorithms and techniques for extracting meaningful insights from complex datasets',
     image: '/images/LLM.jpg',
-    link: 'https://github.com/karthikg10/Advanced-data-mining-project',
+    link: 'https://github.com/karthikg10/Data-Analysis-and-User-Behavior-Profiling',
     tech: ['Data Mining', 'Python', 'Machine Learning', 'Analytics'],
   },
   {
@@ -89,6 +89,14 @@ const projects = [
     tech: ['NLP', 'Summarization', 'BERT', 'Python'],
   },
 ]
+
+function formatRepoName(slug: string): string {
+  const cleaned = slug.replace(/[-_]+/g, ' ').trim()
+  return cleaned
+    .split(' ')
+    .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : ''))
+    .join(' ')
+}
 
 function ProjectCard({ project, index }: { project: typeof projects[number]; index: number }) {
   const rotateX = useSpring(0, { stiffness: 200, damping: 20 })
@@ -110,6 +118,7 @@ function ProjectCard({ project, index }: { project: typeof projects[number]; ind
   }
 
   return (
+    <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
     <motion.div
       key={project.title}
       initial={{ opacity: 0, y: 20 }}
@@ -139,19 +148,17 @@ function ProjectCard({ project, index }: { project: typeof projects[number]; ind
         {/* Corner shine */}
         <div className="absolute -top-20 -left-20 w-40 h-40 bg-white/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
+        <div
           className="absolute top-4 right-4 glass-dark p-2.5 rounded-lg hover:bg-white/20 transition-all"
+          aria-hidden
         >
           <FaGithub className="text-lg text-white" />
-        </a>
+        </div>
       </div>
 
       <div className="p-5">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-400 transition-colors">
-          {project.title}
+          {formatRepoName((project.link.split('/').pop() || project.title))}
         </h3>
         <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">
           {project.description}
@@ -174,6 +181,7 @@ function ProjectCard({ project, index }: { project: typeof projects[number]; ind
         className="pointer-events-none absolute inset-0 rounded-2xl border border-transparent group-hover:border-white/20"
       />
     </motion.div>
+    </a>
   )
 }
 
